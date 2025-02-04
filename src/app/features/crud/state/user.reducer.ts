@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { UserState } from './user.state';
-import { loadUsers } from './user.action';
+import { loadUsers, loadUsersSuccess } from './user.action';
 
 export const initialUserState: UserState = {
   users: [],
@@ -12,6 +12,12 @@ export const userReducer = createReducer(
     return {
       ...state,
       users: [],
+    };
+  }),
+  on(loadUsersSuccess, (state, { users }) => {
+    return {
+      ...state,
+      users,
     };
   }),
 );
